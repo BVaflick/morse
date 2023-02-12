@@ -1,6 +1,7 @@
 class Game1 {
 
     currentTask = ''
+    currentMorseCode = ''
     currentAnswer = ''
 
     constructor(firstField, secondField, audio, translator) {
@@ -11,11 +12,17 @@ class Game1 {
     }
 
     start() {        
-        let randomWord = ALL_WORDS[Math.floor(Math.random() * ALL_WORDS.length)];
-        let morseWord = this.translator.translateToMorse(randomWord);
-        this.currentTask = randomWord;
-        this.firstField.innerText = morseWord;
-        this.audio.playWord(morseWord);
+        let randomWord = ALL_WORDS[Math.floor(Math.random() * ALL_WORDS.length)]
+        let morseWord = this.translator.translateToMorse(randomWord)
+        this.currentTask = randomWord
+        this.currentMorseCode = morseWord
+        this.firstField.innerText = morseWord
+        this.audio.playSentence(morseWord)
+    }
+
+    replay() {
+        this.audio.isPlaying = true
+        this.audio.playSentence(this.currentMorseCode)
     }
 
     stop() {

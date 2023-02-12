@@ -6,6 +6,7 @@ class MorseAudioPlayer {
     SYMBOL_BREAK = this.DOT_TIME * 0.8
     LETTER_BREAK = this.DOT_TIME * 2
     WORD_BREAK = this.LETTER_BREAK * 2.5
+    isPlaying = false
 
     initializeAudioContext() {
         this.note_context = new AudioContext()
@@ -41,7 +42,12 @@ class MorseAudioPlayer {
     }
 
     async playLetter(letter) {
-        for (let i = 0; i < letter.length; i++) {    
+        for (let i = 0; i < letter.length; i++) {   
+            if(this.isPlaying) {
+                this.isPlaying = false
+                this.stopNotePlaying()
+                return
+            } 
             if (letter[i] == '-') {
                 await this.playTone(this.DASH_TIME);
             } else if (letter[i] == '.') {
@@ -53,15 +59,26 @@ class MorseAudioPlayer {
 
     async playWord(word) {
         for (let i = 0; i < word.length; i++) {    
+            if(this.isPlaying) {
+                this.isPlaying = false
+                this.stopNotePlaying()
+                return
+            }
             await this.playLetter(word[i]);
             await this.sleep(this.LETTER_BREAK);
         }
     }
 
     async playSentence(sentence) {  
-        await this.sleep(this.LETTER_BREAK);
-        for (let i = 0; i < sentence.length; i++) {    
-            await this.playWord(sentence[i]);
+        let words = sentence.split(' ');
+        await this.sleep(this.WORD_BREAK);
+        for (let i = 0; i < words.length; i++) {
+            if(this.isPlaying) {
+                this.isPlaying = false
+                this.stopNotePlaying()
+                return
+            }
+            await this.playWord(words[i]);
             await this.sleep(this.WORD_BREAK);
         }
     }
