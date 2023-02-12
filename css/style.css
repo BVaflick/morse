@@ -28,3 +28,8 @@ html, body {
     font-family: "Comic Mono", sans-serif;
     color: rgb(231, 231, 231);
 }
+
+#morse {
+    min-width: 400px;
+    min-height: 100px;
+}

@@ -35,16 +35,15 @@ const MORSE_MAP = {
   // '8': '---..',
   // '9': '----.',
   // '0': '-----'
-};
-
+}
 
 const REVERSE_MORSE_MAP = function() {
-  const reversed = {};
+  const reversed = {}
   Object.keys(MORSE_MAP).forEach(key => {
-    reversed[MORSE_MAP[key]] = key;
+    reversed[MORSE_MAP[key]] = key
   });
-  return reversed;
-}();
+  return reversed
+}()
 
 const KEYS_CHANGED_LOCALE = {
   "a": "ф",
@@ -85,7 +84,7 @@ const KEYS_CHANGED_LOCALE = {
   "<": "б",
   ".": "ю",
   ">": "ю",
-};
+}
 
 const COMMON_WORDS = {
   "description": "Common English words.",
@@ -1070,11 +1069,11 @@ const COMMON_WORDS = {
       "you",
       "young"
     ]
-};
+}
 
-const ALL_WORDS = COMMON_WORDS.commonWords;
+const ALL_WORDS = COMMON_WORDS.commonWords
 
-const EASY_WORDS = COMMON_WORDS.commonWords.filter(word => word.length < 5);
+const EASY_WORDS = COMMON_WORDS.commonWords.filter(word => word.length < 5)
 
 const DIFFICULTY = {
   EASY : {
@@ -1082,3 +1081,9 @@ const DIFFICULTY = {
     
   }
 }
+
+const DOT_TIME = 60
+const DASH_TIME = DOT_TIME * 3
+const SYMBOL_BREAK = DOT_TIME * 0.8
+const LETTER_BREAK = DOT_TIME * 2
+const WORD_BREAK = LETTER_BREAK * 2.5
