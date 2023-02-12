@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <title>Морзе</title>  
+    </head>
+    <body>  
+        <div class="container">  
+             
+            <div class="center">
+                <span id="morse"></span>
+            </div>        
+            <div id="container" class="center"></div>     
+            <div class="center">
+                <span id="text-input"></span>
+            </div>        
+        </div>
+        <div class="button-container">
+            <button id="button">Жми</button>
+        </div>
+    </body>
+    <script type="text/javascript" src="./scripts/constants.js"></script>
+    <script type="text/javascript" src="./scripts/game1.js"></script>    
+    <script type="text/javascript" src="./scripts/audio.js"></script>    
+    <script type="text/javascript" src="./scripts/translator.js"></script>    
+    <script>
+        audio = new MorseAudioPlayer()
+        translator = new Translator()
+        firstField = document.getElementById('morse')
+        secondField = document.getElementById('text-input')
+        game = new Game1(firstField, secondField, audio, translator)
+        document.addEventListener('keydown', event => game.keyboardHandler(event))
+    </script>
+</html>
