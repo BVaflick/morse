@@ -8,11 +8,10 @@
     <body>  
         <div id="container" class="container">               
             <div>
-                <span id="morse" class="center"></span>
-            </div>        
-            <div id="container" class="center"></div>     
+                <span id="first" class="center"></span>
+            </div>                    
             <div>
-                <span id="text-input" class="center"></span>
+                <span id="second" class="center"></span>
             </div>        
         </div>
         <!-- <div class="button-container">
@@ -26,8 +25,8 @@
     <script>
         audio = new MorseAudioPlayer()
         translator = new Translator()
-        firstField = document.getElementById('morse')
-        secondField = document.getElementById('text-input')
+        firstField = document.getElementById('first')
+        secondField = document.getElementById('second')
         game = new Game1(firstField, secondField, audio, translator)
         document.addEventListener('keydown', event => game.keyboardHandler(event))
     </script>
