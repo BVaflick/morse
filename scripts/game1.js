@@ -3,6 +3,19 @@ class Game1 {
     currentTask = ''
     currentMorseCode = ''
     currentAnswer = ''
+    
+    /*
+    * EASY  =>  чтение (очень лёгкие слова (до 2 букв включительно), состоящие из букв, закодированых не более 3 символами 
+                аудирование - 1 буква, не более 2 символов на букву 
+                выбор ответа
+    * MEDIUM => чтение (легкие слова) + ввод ответа
+    *           аудирование (легкие слова) + выбор ответа
+    * HARD  =>  аудирование (предложения из легких слов) + ввод ответа
+    *           фонарь (легкие слова) + выбор ответа
+    * HELL  =>  аудирование (любое предложение) + ввод ответа
+    *           фонарик (любое предложение) + ввод ответа 
+    * 
+    */
 
     constructor(firstField, secondField, audio, translator) {
         this.firstField = firstField
@@ -17,9 +30,9 @@ class Game1 {
         this.currentTask = randomWord
         this.currentMorseCode = morseWord       
         
-        let mode = Math.floor(Math.random() * 4)
+        this.mode = Math.floor(Math.random() * 4)
         let container = document.getElementById('container')
-        switch(mode) {
+        switch(this.mode) {
             case 0:
                 console.log(randomWord, "режим: аудио + выбор") 
                 container.style.backgroundColor = '#64AAAA'
@@ -155,7 +168,8 @@ class Game1 {
                     this.secondField.innerText = ''
                     this.start()
                 } else {
-                    this.replay()
+                    if(this.mode==3) this.playSentence(this.currentMorseCode, true)
+                    else if(this.mode==1 || this.mode==0) this.playSentence(this.currentMorseCode, false)
                 }
                 break
             default:
