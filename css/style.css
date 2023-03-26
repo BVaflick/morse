@@ -29,7 +29,11 @@ html, body {
     color: rgb(231, 231, 231);
 }
 
-#morse {
+#first {    
     min-width: 400px;
     min-height: 100px;
+}
+
+#second {
+    letter-spacing: .3rem;
 }

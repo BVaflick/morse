@@ -29,7 +29,6 @@ class Game1 {
         let morseWord = this.translator.translateToMorse(randomWord)
         this.currentTask = randomWord
         this.currentMorseCode = morseWord       
-        
         // this.mode = Math.floor(Math.random() * 4)
         this.mode = 2
         let container = document.getElementById('container')
@@ -37,23 +36,25 @@ class Game1 {
             case 0:
                 console.log(randomWord, "режим: аудио + выбор") 
                 container.style.backgroundColor = '#64AAAA'
-                this.playSentence(morseWord, false)
+                this.playSentence(morseWord, false)                
                 this.showAnswers()                
                 break 
             case 1:
                 console.log(randomWord, "режим: аудио + ввод")
-                container.style.backgroundColor = '#9664AA';
+                container.style.backgroundColor = '#9664AA'
+                this.secondField.innerText = "_".repeat(randomWord.length)
                 this.playSentence(morseWord, false)                
                 break
             case 2:
-                console.log(randomWord, morseWord, "режим: чтение + ввод")
-                container.style.backgroundColor = '#AA6464';
+                console.log(randomWord, "режим: чтение + выбор")
+                container.style.backgroundColor = '#AA6464'
                 this.firstField.innerText = morseWord
                 this.showAnswers()                
                 break
             case 3:
                 console.log(randomWord, "режим: мерцание")
-                container.style.backgroundColor = '#64AA64';
+                container.style.backgroundColor = '#64AA64'
+                this.secondField.innerText = "_".repeat(randomWord.length)
                 this.playSentence(morseWord, true)
                 break
         }
@@ -156,8 +157,10 @@ class Game1 {
         let text = this.secondField.innerText
         switch(key) {
             case 'backspace':
-                this.currentAnswer = this.currentAnswer.slice(0, text.length - 1)
-                this.secondField.innerText = this.currentAnswer
+                console.log(this.currentAnswer)
+                this.currentAnswer = this.currentAnswer.slice(0, this.currentAnswer.length - 1)
+                console.log(this.currentAnswer)
+                this.secondField.innerText = this.currentAnswer + "_".repeat(this.currentTask.length - this.currentAnswer.length)
                 break
             case 'enter':
                 if(!this.started) {
@@ -179,8 +182,10 @@ class Game1 {
                     // if(typeof keyToMorseChar[key] !== 'undefined') {
                     //   key = keyToMorseChar[key]
                     // }
-                    this.currentAnswer += key
-                    this.secondField.innerText = this.currentAnswer
+                    if(this.currentAnswer.length != this.currentTask.length) {
+                        this.currentAnswer += key
+                        this.secondField.innerText = this.currentAnswer + "_".repeat(this.currentTask.length - this.currentAnswer.length)
+                    }
                 }
         }          
     }
