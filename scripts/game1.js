@@ -30,7 +30,8 @@ class Game1 {
         this.currentTask = randomWord
         this.currentMorseCode = morseWord       
         
-        this.mode = Math.floor(Math.random() * 4)
+        // this.mode = Math.floor(Math.random() * 4)
+        this.mode = 2
         let container = document.getElementById('container')
         switch(this.mode) {
             case 0:
@@ -45,7 +46,7 @@ class Game1 {
                 this.playSentence(morseWord, false)                
                 break
             case 2:
-                console.log(randomWord, "режим: чтение + ввод")
+                console.log(randomWord, morseWord, "режим: чтение + ввод")
                 container.style.backgroundColor = '#AA6464';
                 this.firstField.innerText = morseWord
                 this.showAnswers()                
